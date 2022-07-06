@@ -10,7 +10,7 @@ In the project directory, you can run:
 This runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-You can then enter a digit and an operator, and then click the equal button to send the request to the backend.
+You can then enter digits and operators, and then click the equal button to send the request to the backend.
 
 ## 'sh react-scripts command not found' error
 When running the command `npm start` after cloning the project, you may get an "sh react-scripts command not found" error. If this occurs, you can perform one of the following solutions:
