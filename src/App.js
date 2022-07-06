@@ -4,31 +4,20 @@ import { useState } from 'react';
 
 function App() {
 	const [calc, setDisplay] = useState("");
-	const [result, setResult] = useState("");
 
 	const ops = ['+','-','*'];
 
 	const updateDisplay = value => {
+		// makes it so you can only input an operator after inputting a number, and only once between numbers
 		if (ops.includes(value) && calc === '' || ops.includes(value) && ops.includes(calc.slice(-1))){
 			return;
 		}
 
+		// only allows you to enter a 0 after entering another number
 		if (calc === '' && value === '0'){
 			return;
 		}
 		setDisplay(calc + value);
-	}
-
-	const makeDigits = () => {
-		const digits = [];
-
-		for (let i = 1; i < 10; i++){
-			digits.push(
-				<button onClick={() =>  updateDisplay(i.toString())} key={i}>{i}</button>
-			)
-		}
-
-		return digits;
 	}
 
 	const calculate = () => {
@@ -36,6 +25,8 @@ function App() {
 		//updateDisplay("TEST");
 
 		console.log(calc);
+
+		// sends the equation as a string to the API
 		sendHTTP(`http://localhost:8080/calc/${calc}`);
 		//sendHTTP(`http://noahsiters-calc-api.herokuapp.com/${calc}`);
 	}
@@ -56,6 +47,8 @@ function App() {
 
 		http.onreadystatechange=(e)=>{
 			//console.log(http.responseText);
+
+			// sets display to the API response
 			setDisplay(http.responseText);
 		}
 	}
